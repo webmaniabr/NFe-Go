@@ -2,15 +2,18 @@ package main
 
 import (
 	"fmt"
+	"strings"
 	"net/http"
 	"io/ioutil"
 )
 
 func main() {
 
-	url := "https://webmaniabr.com/api/1/nfe/certificado/"
+	url := "https://webmaniabr.com/api/1/nfe/devolucao/"
 
-	req, _ := http.NewRequest("GET", url, nil)
+	payload := strings.NewReader("{\n\t\"chave\":\"00000000000000000000000000000000000000000000\",\n\t\"natureza_operacao\":\"Devolução de venda de produção do estabelecimento\",\n\t\"codigo_cfop\":\"1.202\",\n\t\"produtos\": [ 2, 3 ],\n\t\"ambiente\":\"1\"\n}")
+
+	req, _ := http.NewRequest("POST", url, payload)
 
 	req.Header.Add("Cache-Control", "no-cache")
 	req.Header.Add("Content-Type", "application/json")

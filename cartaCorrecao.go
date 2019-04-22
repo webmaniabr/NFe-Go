@@ -1,13 +1,3 @@
-/*
-JSON request:
-
-{
-  "chave":"45150819652219000198550990000000011442380343",
-  "correcao":"O CFOP correto é 5.102 referente a revenda tributada no mesmo estado.",
-  "ambiente":1
-}
-*/
-
 package main
 
 import (
@@ -21,16 +11,16 @@ func main() {
 
 	url := "https://webmaniabr.com/api/1/nfe/cartacorrecao/"
 
-	payload := strings.NewReader("{\"chave\": \"45150819652219000198550990000000011442380343\",\"correcao\": \"O CFOP correto é 5.102 referente a revenda tributada no mesmo estado.\",\"ambiente\": \"1\"}")
+	payload := strings.NewReader("{\n\t\"chave\": \"00000000000000000000000000000000000000000000\",\n\t\"correcao\": \"O CFOP correto é 5.102 referente a revenda tributada no mesmo estado.\"\n}")
 
 	req, _ := http.NewRequest("POST", url, payload)
 
-  req.Header.Add("cache-control", "no-cache")
-	req.Header.Add("content-type", "application/json")
-	req.Header.Add("x-consumer-key", "SEU_CONSUMER_KEY")
-	req.Header.Add("x-consumer-secret", "SEU_CONSUMER_SECRET")
-	req.Header.Add("x-access-token", "SEU_ACCESS_TOKEN")
-	req.Header.Add("x-access-token-secret", "SEU_ACCESS_TOKEN_SECRET")
+	req.Header.Add("Cache-Control", "no-cache")
+	req.Header.Add("Content-Type", "application/json")
+	req.Header.Add("X-Consumer-Key", "SEU_CONSUMER_KEY")
+	req.Header.Add("X-Consumer-Secret", "SEU_CONSUMER_SECRET")
+	req.Header.Add("X-Access-Token", "SEU_ACCESS_TOKEN")
+	req.Header.Add("X-Access-Token-Secret", "SEU_ACCESS_TOKEN_SECRET")
 
 	res, _ := http.DefaultClient.Do(req)
 

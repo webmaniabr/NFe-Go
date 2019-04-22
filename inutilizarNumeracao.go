@@ -1,15 +1,3 @@
-/*
-JSON request:
-
-{
-  "sequencia": "101-109",
-  "motivo": "Inutilização por problemas técnicos.",
-  "ambiente": "1",
-  "serie": "99",
-  "modelo": "1"
-}
-*/
-
 package main
 
 import (
@@ -23,16 +11,16 @@ func main() {
 
 	url := "https://webmaniabr.com/api/1/nfe/inutilizar/"
 
-	payload := strings.NewReader("{\"sequencia\":\"101-109\",\"motivo\":\"Inutilização por problemas técnicos.\",\"ambiente\":\"1\",\"serie\":\"99\",\"modelo\":\"1\"}")
+	payload := strings.NewReader("{\n\t\"sequencia\":\"101-109\",\n\t\"motivo\":\"Inutilização por problemas técnicos.\",\n\t\"ambiente\":\"2\",\n\t\"serie\":\"99\",\n\t\"modelo\":\"1\"\n}")
 
 	req, _ := http.NewRequest("PUT", url, payload)
 
-  req.Header.Add("cache-control", "no-cache")
-	req.Header.Add("content-type", "application/json")
-	req.Header.Add("x-consumer-key", "SEU_CONSUMER_KEY")
-	req.Header.Add("x-consumer-secret", "SEU_CONSUMER_SECRET")
-	req.Header.Add("x-access-token", "SEU_ACCESS_TOKEN")
-	req.Header.Add("x-access-token-secret", "SEU_ACCESS_TOKEN_SECRET")
+	req.Header.Add("Cache-Control", "no-cache")
+	req.Header.Add("Content-Type", "application/json")
+	req.Header.Add("X-Consumer-Key", "SEU_CONSUMER_KEY")
+	req.Header.Add("X-Consumer-Secret", "SEU_CONSUMER_SECRET")
+	req.Header.Add("X-Access-Token", "SEU_ACCESS_TOKEN")
+	req.Header.Add("X-Access-Token-Secret", "SEU_ACCESS_TOKEN_SECRET")
 
 	res, _ := http.DefaultClient.Do(req)
 
